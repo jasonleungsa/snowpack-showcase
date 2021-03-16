@@ -7,17 +7,43 @@
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "@apollo/client": "^3.3.12",
+    "graphql": "^15.5.0",
+    "ramda": "^0.27.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-query": "^3.12.2",
+    "react-virtuoso": "^1.5.14",
+    "react-window": "^1.8.6"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.13.8",
+    "@snowpack/app-scripts-react": "^2.0.0",
     "@snowpack/plugin-dotenv": "^2.0.5",
+    "@snowpack/plugin-postcss": "^1.1.0",
     "@snowpack/plugin-react-refresh": "^2.4.0",
     "@snowpack/web-test-runner-plugin": "^0.2.0",
     "@testing-library/react": "^11.0.0",
     "@web/test-runner": "^0.12.0",
+    "autoprefixer": "^10.2.5",
     "chai": "^4.2.0",
+    "eslint": "^7.22.0",
+    "eslint-plugin-react-app": "^6.2.2",
+    "http-proxy": "^1.18.1",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
     "prettier": "^2.0.5",
-    "snowpack": "^3.0.1"
+    "snowpack": "^3.1.0-pre.13",
+    "tailwindcss": "^2.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "react/prop-types": 0,
+      "react/jsx-props-no-spreading": 0,
+      "react/react-in-jsx-scope": 0
+    }
   }
 }

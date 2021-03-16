@@ -1,25 +1,32 @@
+const injectEnv = require('@snowpack/plugin-dotenv');
+const httpProxy = require('http-proxy');
+
+injectEnv();
+
+const proxy = httpProxy.createServer({ target: 'https://www.seek.com.au/api/chalice-search', changeOrigin: true });
+
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
+  extends: '@snowpack/app-scripts-react',
   mount: {
     public: {url: '/', static: true},
     src: {url: '/dist'},
   },
-  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
+  plugins: ['@snowpack/plugin-postcss'],
   routes: [
-    /* Enable an SPA Fallback in development: */
-    // {"match": "routes", "src": ".*", "dest": "/index.html"},
+    {
+      src: '/search',
+      dest: (req, res) => {
+        proxy.web(req, res);
+      },
+    },
   ],
-  optimize: {
-    /* Example: Bundle your final build: */
-    // "bundle": true,
-  },
   packageOptions: {
-    /* ... */
+    knownEntrypoints: ['react/jsx-runtime'],
+    polyfillNode: true,
   },
   devOptions: {
-    /* ... */
-  },
-  buildOptions: {
-    /* ... */
+    port: parseInt(process.env.PORT, 10) || 3000,
+    open: 'none',
   },
 };
